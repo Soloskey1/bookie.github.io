@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookie - Open Your Mind</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+        <div class="container header-inner">
+            <a href="#home" class="logo">
+                <svg class="logo-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm3 0h2v2h-2V5z" clip-rule="evenodd" />
+                </svg>
+                Bookie
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#subscribe" class="header-cta">
+                    Start Reading
+                </a>
+                <!-- Login Button -->
+                <a href="login.html" class="login-btn">LOGIN</a>
+                
+                <div class="header-mobile-right" onclick="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+        <!-- Side Bar -->
+        <div class="sidebar" id="sidebar">
+         <button class="close-btn" onclick="closeSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+            <nav>
+                <a href="#features" class="nav-link" onclick="closeSidebar()">Features</a>
+                <a href="#reviews" class="nav-link" onclick="closeSidebar()">Reviews</a>
+                <a href="#pricing" class="nav-link" onclick="closeSidebar()">Pricing</a>
+                <a href="#contact" class="nav-link" onclick="closeSidebar()">Contact</a>
+                <a href="login.html" class="nav-link">LOGIN</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1 class="hero-title">
+                    Read Smarter, Not Harder.
+                </h1>
+                <p class="hero-subtitle">
+                    Access a curated library of non-fiction essentials, summarized and ready to consume in under 15 minutes.
+                </p>
+                <a href="#subscribe" class="hero-cta-button">
+                    Claim Your Free Trial
+                </a>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">
+                    Why Choose Bookie?
+                </h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3>Rapid Learning</h3>
+                        <p>Master key concepts from bestsellers in minutes, saving you hours of reading time.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h3>Expertly Curated</h3>
+                        <p>Our summaries are crafted by subject matter experts to ensure accuracy and depth.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6m3-3h10m-10 0a2 2 0 002 2h2a2 2 0 002-2m-8 0h4m3 0a2 2 000-2-2h2a2 2 0002 2m-10-6h12a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v4a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3>Anytime, Anywhere</h3>
+                        <p>Read on your commute, during lunch, or before bed. Available on all devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poem Excerpt -->
+        <section class="poem-container">
+        <div class="author-section">
+            <img src="Allan P.jpg" alt="Author's Photo" class="author-photo">
+            <h2 class="author-name">Allan Poet</h2>
+        </div>
+
+        <h1 class="title">The Violet's Verse</h1>
+
+        <div class="stanza">
+            <p>In fields of <span class="white-text">white</span>, where silence holds the light,</p>
+            <p>A blank horizon, pure and shining bright.</p>
+            <p>The canvas waits, a promise yet untold,</p>
+            <p>A clarity of spirit, brave and bold.</p>
+        </div>
+
+        <div class="stanza">
+            <p>Then <span class="purple-text">purple</span> strikes, a whisper from the deep,</p>
+            <p>Where velvet shadows ancient secrets keep.</p>
+            <p>The royal stain of amethyst and dream,</p>
+            <p>A vibrant current in the silent stream.</p>
+        </div>
+
+        <div class="stanza">
+            <p>It is the <span class="white-text">white</span> of truth, the open mind,</p>
+            <p>By <span class="purple-text">purple</span> passion richly intertwined.</p>
+            <p>From gentle dawn to dusk's creative spark,</p>
+            <p>A page where light transcends the fading dark.</p>
+        </div>
+    </section>
+
+
+        <section id="reviews" class="reviews-section">
+            <div class="container">
+                <h2 class="section-title">
+                    What Our Readers Say
+                </h2>
+                
+                <div class="reviews-grid">
+                    
+                    <div class="review-card">
+                        <p class="review-text">"Bookie changed the way I consume non-fiction. I went from reading a few books a year to gaining insights from dozens. The summaries are brilliant and save me so much time!"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">J.D.</div>
+                            <div class="author-info">
+                                <strong>Jane Doe</strong>
+                                <span>CEO, Innovatech Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <p class="review-text">"The curation is perfect. Every book I've seen on Bookie is exactly what I needed to boost my professional knowledge. It's the ultimate learning shortcut."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">M.R.</div>
+                            <div class="author-info">
+                                <strong>Mark Rodriguez</strong>
+                                <span>Senior Product Manager</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <p class="review-text">"I used to feel guilty for not finishing books, but Bookie lets me get the core value quickly. Now I can apply the knowledge instantly. Highly recommended for busy people."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">S.L.</div>
+                            <div class="author-info">
+                                <strong>Sarah Lim</strong>
+                                <span>Freelance Consultant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" class="subscribe-section">
+            <div class="container subscribe-box">
+                <h2>
+                    Unlock Your Potential Today
+                </h2>
+                <p>
+                    Sign up now and get **two free bestseller summaries** delivered instantly to your inbox!
+                </p>
+                
+                <form id="subscribeForm" class="cta-form">
+                    <input type="email" name="email" placeholder="Enter your email address" required 
+                           class="form-input"
+                           aria-label="Email address for subscription">
+                    <button type="submit" class="subscribe-button">
+                        Claim My Free Books!
+                    </button>
+                </form>
+
+                <p id="subscribeMessage" class="subscribe-message"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div id="footer-links-grid" class="footer-grid">
+                
+                <div class="footer-col-logo">
+                    <a href="#home" class="logo footer-logo">
+                        <svg class="logo-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm3 0h2v2h-2V5z" clip-rule="evenodd" />
+                        </svg>
+                        Bookie
+                    </a>
+                    <p>
+                        Open your mind to endless possibilities. We provide curated books to fuel your curiosity and knowledge.
+                    </p>
+                </div>
+
+                <div class="footer-links-container">
+                    
+                    <div class="footer-column" id="footer-column-company">
+                        <h4 class="footer-title" data-target="company-links">
+                            Company
+                            <svg class="footer-title-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h4>
+                        <div class="footer-submenu" id="company-links" data-open="false">
+                            <a href="#" class="footer-link">About Us</a>
+                            <a href="#" class="footer-link">Careers</a>
+                            <a href="#" class="footer-link">Press</a>
+                            <a href="#" class="footer-link">Contact</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column" id="footer-column-resources">
+                        <h4 class="footer-title" data-target="resources-links">
+                            Resources
+                            <svg class="footer-title-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h4>
+                        <div class="footer-submenu" id="resources-links" data-open="false">
+                            <a href="#" class="footer-link">Blog</a>
+                            <a href="#" class="footer-link">FAQ</a>
+                            <a href="#" class="footer-link">Partnerships</a>
+                            <a href="#" class="footer-link">Affiliates</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column" id="footer-column-legal">
+                        <h4 class="footer-title" data-target="legal-links">
+                            Legal
+                            <svg class="footer-title-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h4>
+                        <div class="footer-submenu" id="legal-links" data-open="false">
+                            <a href="#" class="footer-link">Terms of Service</a>
+                            <a href="#" class="footer-link">Privacy Policy</a>
+                            <a href="#" class="footer-link">Cookie Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 011-1h3V3h-3a5 5 0 00-5 5v2H7z"/></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.795-1.574 2.164-2.722-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.373 0-6.095 2.824-6.095 6.289 0 .49.057.965.167 1.416-5.06-2.582-9.53-5.367-12.52-10.468-.523.896-.827 1.942-.827 3.064 0 2.182 1.11 4.102 2.793 5.247-1.036-.033-2.008-.341-2.86-.795.002.028.002.057.002.086 0 3.072 2.184 5.637 5.084 6.223-.532.146-1.096.225-1.674.225-.407 0-.802-.039-1.189-.112.808 2.54 3.159 4.385 5.955 4.436-2.16 1.7-4.887 2.716-7.798 2.716-.507 0-1.002-.033-1.49-.088 2.82 1.83 6.16 2.905 9.776 2.905 11.72 0 18.17-10.35 18.17-19.344 0-.295-.008-.588-.018-.877 1.246-.92 2.329-2.072 3.18-3.398z"/></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-6h2v6zm4 0h-2v-6h2v6z"/></svg>
+                    </a>
+                </div>
+
+                <div class="copyright">
+                    <p>&copy; <span id="currentYear"></span> Bookie Inc. All rights reserved.</p>
+                    <p class="copyright-tagline">Made with curiosity and code.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Script for this file -->
+    <script src="myscript.js"></script>
+
+</body>
+</html>

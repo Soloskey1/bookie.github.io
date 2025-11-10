@@ -1,0 +1,874 @@
+        /* ======================================= */
+        /* 1. CSS Variables & Global Reset         */
+        /* ======================================= */
+        :root {
+            --primary-color: #4f46e5; /* Indigo-600 */
+            --primary-dark: #4338ca;  /* Indigo-700 */
+            --text-default: #1f2937;  /* Gray-900 (Black/Dark Gray) */
+            --text-secondary: #6b7280; /* Gray-600 */
+            --bg-light: #f7f9fb;
+            --bg-dark: #1f2937; /* Gray-900 for dark sections */
+            --max-width: 1280px;
+            --header-height: 4rem;
+            
+            /* Mobile Menu Specific Mapped Colors */
+            --mobile-text: var(--text-default);
+            --mobile-bg-light: #eef2ff; /* indigo-100 */
+            --mobile-link-hover: var(--primary-color);
+        }
+
+        /* UPDATED FONT IMPORT: Including Lora (Serif) for testimonials */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: var(--bg-light);
+            color: var(--text-default);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* ======================================= */
+        /* 2. Header & Navigation                  */
+        /* ======================================= */
+        .header {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .header > * {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 800;
+            color: var(--text-default);
+            letter-spacing: -0.025em; /* tracking-tight */
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+            fill: currentColor;
+        }
+
+        .desktop-nav {
+            display: none;
+            gap: 1.5rem; /* space-x-6 */
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .desktop-nav .nav-link:hover {
+            color: var(--bg-dark);
+        }
+
+        .header-cta {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .login-btn {
+            display: inline-flex;
+             padding: 0.5rem 1rem;
+             font-weight: 600;
+             border-radius: 0.5rem;
+             border: 1px solid var(--primary-color);
+             color: var(--primary-color);
+             transition: background 0.3s ease, color 0.2s ease;
+        }
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .header-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        /* --- MOBILE MENU/HEADER ICON STYLES (NEW) --- */
+        .header-mobile-right {
+            /* Container for the hamburger icon */
+            display: flex; /* Visible by default on mobile */
+            align-items: center;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .header-mobile-right:hover {
+            background-color: var(--bg-light);
+        }
+
+        .header-mobile-right svg {
+            stroke: var(--primary-color);
+            width: 28px;
+            height: 28px;
+        }
+        
+        /* --- SIDEBAR MENU STYLES (NEW) --- */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+
+        .sidebar-backdrop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 0; /* Hidden state */
+            height: 100vh;
+            max-width: 80vw; /* Take up most of the screen on small phones */
+            background-color: var(--bg-dark);
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.15);
+            overflow-y: auto; 
+            overflow-x: hidden;
+            transition: width 0.3s ease-in-out;
+            z-index: 50; 
+            display: flex;
+            flex-direction: column;
+            padding: 0; 
+            box-sizing: border-box;
+        }
+
+      
+        .sidebar.open {
+            width: 60vw; /* Fixed width for clarity, adjust as needed */
+            min-width: 300px;
+        }
+
+        .close-btn {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--bg-light);
+            cursor: pointer;
+            margin: 1rem 1rem 1rem 0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            line-height: 1;
+            transition: background-color 0.2s ease,
+                        color 0.2 ease;
+        }
+
+        .close-btn:hover {
+            background-color: var(--mobile-bg-light);
+            color: #1f2937;
+        }
+
+        .sidebar nav {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2.5rem 3rem; 
+        }
+        
+        .sidebar nav > a {
+            display: block;
+            text-decoration: none;
+            color: var(--bg-light);
+            font-size: 1.125rem;
+            font-weight: 400;
+            padding: 2.2rem 0;
+            border-bottom: 1px solid var(--bg-light);
+            text-align: center; 
+            border-radius: 3px;
+            transition: all 0.3 ease; 
+        }
+
+        /*
+        .sidebar .nav-link {
+            display: block;
+            width: 80%;
+            padding: ;
+        }
+            */
+        .sidebar nav > a:last-child {
+            border-bottom: none;
+            background: var(--primary-dark);
+            max-width: 200px;
+            padding:  1rem 3rem;
+            margin-top: 50px;
+            border-radius: 15px;
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar nav > a:last-child:hover {
+            color: #1f2937;
+            transform: translateY(-1px);
+        }
+
+        .sidebar nav > a:hover {
+            color: var(--mobile-link-hover);
+            transform: translateY(-2px);
+        }
+        
+        /* --- Media Queries --- */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .desktop-nav {
+                display: flex; 
+            }
+            .header-mobile-right {
+                display: none; /* Hide hamburger icon on desktop */
+            }
+            .header-cta {
+                /* On desktop, the CTA is always visible next to the nav */
+            }
+        }
+
+        @media (max-width: 640px ) {
+            .login-btn {
+                display: none;
+            }
+        }
+
+
+        /* ======================================= */
+        /* 3. Hero Section                         */
+        /* ======================================= */
+        .hero {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .hero {
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+            }
+        }
+
+        .hero-title {
+            font-size: 3rem; /* 48px */
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.75rem; /* 60px */
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem; /* 20px */
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 1.5rem; /* 24px */
+            }
+        }
+
+        .hero-cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.125rem; /* 18px */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-decoration: none;
+            transition: background-color 0.5s, transform 0.5s;
+        }
+
+        .hero-cta-button:hover {
+            background-color: #f3f4f6; /* gray-100 */
+            transform: scale(1.05);
+        }
+
+        /* ======================================= */
+        /* 4. Features Section                     */
+        /* ======================================= */
+        .features-section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background-color: var(--bg-light);
+        }
+        
+        @media (min-width: 768px) {
+            .features-section {
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+            }
+        }
+
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text-default);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem; /* gap-10 */
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            text-align: center;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-0.25rem); /* hover:-translate-y-1 */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* hover:shadow-2xl */
+        }
+
+        .feature-icon-wrapper {
+            padding: 0.75rem;
+            display: inline-block;
+            border-radius: 9999px; /* rounded-full */
+            background-color: #eef2ff; /* indigo-100 */
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-default);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+        
+       
+            /* ======================================= */
+        /* 5. Poem Container            */
+        /* ======================================= */
+        .poem-container {
+            font-family: 'Playfair Display', serif;
+           /* display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center; */
+            width: 90%;
+            max-width: 600px;
+            /*padding: 40px 50px; */
+            padding: 2.5rem 1.5rem;
+            margin: 2rem auto; 
+            background-color: var(--white); /* White background for the poem container */
+            color: var(--primary-color); /* Deep purple text on white background */
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            text-align: center;
+        }
+
+        /* --- Author Section Styling --- */
+        .author-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--primary-dark); /* A subtle divider */
+            padding-bottom: 20px;
+        }
+
+        .author-photo {
+            width: 200px; /* Size of the photo */
+            height: 200px;
+            border-radius: 50%; /* Makes the photo circular */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            margin-bottom: 10px;
+            border: 3px solid var(--primary-dark); /* Purple border around the photo */
+        }
+
+        .author-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color); /* Purple author name */
+            margin: 0;
+        }
+
+        /* --- Title Styling --- */
+        .title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            /* Note: light-purple is not defined in the :root, using a similar color variable */
+            border-bottom: 2px solid var(--mobile-bg-light); 
+            padding-bottom: 15px;
+            color: var(--primary-color); 
+        }
+
+        /* --- Stanza Styling --- */
+        .stanza {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Stanza paragraph styling */
+        .stanza p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        /* --- Color Highlights (Bringing out the keywords) --- */
+        .white-text {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .purple-text {
+            color: var(--primary-color); 
+            font-weight: 700;
+          /* text-shadow: 0 0 5px var(--primary-dark); /* Add a light purple glow */
+        }
+
+        
+        /* ======================================= */
+        /* 6. Reviews Section (New)                */
+        /* ======================================= */
+        .reviews-section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background-color: white;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .review-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+        }
+
+        /* UPDATED: Applying Lora font to the review text */
+        .review-text {
+            font-family: 'Lora', serif; /* Changed font family */
+            font-size: 1.125rem;
+            font-style: italic;
+            color: var(--text-default);
+            margin-bottom: 1.5rem;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .author-avatar {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            background-color: #d1d5db; /* gray-300 placeholder */
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .author-info strong {
+            display: block;
+            font-weight: 600;
+            color: var(--text-default);
+        }
+
+        .author-info span {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* ======================================= */
+        /* 6. Subscription CTA                     */
+        /* ======================================= */
+        .subscribe-section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            min-width: auto;   /*can be changed */
+            background-color: white;
+        }
+        
+        @media (min-width: 768px) {
+            .subscribe-section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+
+        .subscribe-box {
+            max-width: 42rem;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 1rem; /* rounded-2xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+            border-top: 4px solid var(--primary-color);
+            text-align: center;
+        }
+
+        .subscribe-box h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--text-default);
+            margin-bottom: 0.75rem;
+        }
+
+        .subscribe-box p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .cta-form {
+                flex-direction: row;
+            }
+        }
+
+        .form-input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 0.5rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* shadow-inner */
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5); /* ring effect */
+        }
+
+        .subscribe-button {
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            transition: background-color 0.3s, transform 0.3s, animation 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        keyframes subtle-float {
+            0% { transform: translateY(0); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
+            50% { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
+            100% { transform: translateY(0); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
+        }
+
+        .subscribe-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.02);
+            animation: subtle-float 0.8s ease-in-out infinite;
+        }
+        
+        .subscribe-message {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #10b981; /* green-600 */
+            height: 1.5rem;
+        }
+
+        /* ======================================= */
+        /* 7. Footer Section                       */
+        /* ======================================= */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #d1d5db; /* gray-300 */
+        }
+
+        .footer-inner {
+            max-width: 80rem; /* max-w-7xl */
+            margin: auto;
+            padding: 4rem 1rem;
+        }
+
+        /* Footer Grid: Default is single column (1fr) */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem; /* gap-8 */
+        }
+
+        .footer-col-logo {
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col-logo p {
+            font-size: 0.875rem;
+            color: #9ca3af; /* gray-400 */
+            max-width: 20rem;
+        }
+
+        /* Link Columns Container (3 columns inside the main grid) */
+        .footer-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* space-y-6 */
+        }
+
+        .footer-column {
+            /* Ensures accordion items stack nicely on mobile */
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-title-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: block;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-title.is-open .footer-title-icon {
+            transform: rotate(180deg);
+        }
+
+        .footer-submenu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* space-y-3 */
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .footer-submenu[data-open="true"] {
+            max-height: 500px; /* Large enough value */
+            opacity: 1;
+            padding-top: 1rem;
+            transition: max-height 0.4s ease-in, opacity 0.4s ease-in, padding 0.4s ease-in;
+        }
+
+        .footer-link {
+            font-size: 0.875rem;
+            color: #d1d5db; /* gray-300 */
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Separator and Copyright Section */
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151; /* gray-700 */
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            color: #9ca3af; /* gray-400 */
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .copyright p {
+            font-size: 0.875rem;
+        }
+
+        .copyright-tagline {
+            font-size: 0.75rem;
+            color: #6b7280; /* gray-500 */
+            margin-top: 0.25rem;
+        }
+
+
+        /* ======================================= */
+        /* 8. Media Queries (Desktop/Tablet)       */
+        /* ======================================= */
+        @media (min-width: 768px) { /* md breakpoint for multi-column footer and reviews */
+            
+            /* Footer Grid Setup */
+            .footer-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .footer-col-logo {
+                grid-column: span 2 / span 2;
+                margin-bottom: 0;
+            }
+
+            .footer-links-container {
+                grid-column: span 3 / span 3;
+                display: grid; /* Switch to grid layout for links */
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            /* Disable mobile accordion effect on desktop */
+            .footer-title-icon {
+                display: none;
+            }
+
+            .footer-title {
+                cursor: default;
+            }
+
+            .footer-submenu, .footer-submenu[data-open="false"], .footer-submenu[data-open="true"] {
+                max-height: none !important;
+                opacity: 1 !important;
+                padding-top: 0 !important;
+                display: flex; /* Ensure links stack vertically */
+            }
+
+            /* Footer Bottom Layout */
+            .footer-bottom {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .copyright {
+                margin-top: 0;
+                text-align: right;
+            }
+
+            /* Reviews Grid Setup */
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        
+        /* ======================================= */
+        /* 9. Utility Overrides (Links/Buttons)    */
+        /* ======================================= */
+        a {
+            text-decoration: none;
+        }
+        
